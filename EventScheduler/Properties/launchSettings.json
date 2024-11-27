@@ -3,7 +3,7 @@
     "EventScheduler": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/monitoring",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

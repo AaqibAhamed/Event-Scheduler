@@ -15,6 +15,7 @@ namespace EventScheduler.Data
     {
         public virtual DbSet<Event> Events { get; set; } = null!;
         public virtual DbSet<Participant> Participants { get; set; } = null!;
+        
         public virtual DbSet<Schedule> Schedules { get; set; } = null!;
         public virtual DbSet<Speaker> Speakers { get; set; } = null!;
 
