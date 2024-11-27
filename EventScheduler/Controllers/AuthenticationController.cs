@@ -25,6 +25,26 @@ namespace EventScheduler.Controllers
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Get an authentication token to use for calling the endpoints
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     POST api/authentication/token
+        ///     {        
+        ///       "username": "john",
+        ///       "password": "John@123#"   
+        ///     }
+        /// Sample Response:
+        /// 
+        ///     {        
+        ///       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+        ///       "expiration": "2022/08/23 12:03:03"   
+        ///     }
+        /// </remarks>
+        /// <response code="200">Authentication Token and Expiration Time</response>
+        /// <response code="401">If crednetials are wrong</response>  
         [HttpPost]
         [Route("token")]
         public async Task<IActionResult> Token([FromBody] LoginModel model)
