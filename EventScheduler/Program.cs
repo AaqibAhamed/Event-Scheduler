@@ -107,6 +107,11 @@ if (app.Environment.IsDevelopment())
 {
    app.UseSwagger();
    app.UseSwaggerUI();
+   app.UseExceptionHandler("/errorhandler/error-development");
+}
+else
+{
+    app.UseExceptionHandler("/errorhandler/error");
 }
 
 app.UseHttpsRedirection();
