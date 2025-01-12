@@ -5,8 +5,12 @@ using EventScheduler.Services.Model.Speaker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using EventScheduler.Services.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EventScheduler.Services.Services
 {
@@ -21,6 +25,8 @@ namespace EventScheduler.Services.Services
         IEnumerable<object> GetEvents(string userId);
         IEnumerable<ParticipantViewModel> GetParticipantsByEvent(string userId, Guid eventId);
         IEnumerable<SpeakerViewModel> GetSpeakersByEvent(string userId, Guid eventId);
+        
+        IEnumerable<object> GetExternalEvents(string userId);
     }
 
     public class EventDataService : IEventDataService
@@ -130,6 +136,7 @@ namespace EventScheduler.Services.Services
 
             }).ToList();
         }
+
         public Guid AddSpeaker(string userId, NewSpeakerModel data)
         {
 
@@ -155,6 +162,19 @@ namespace EventScheduler.Services.Services
             if (speaker == null) throw new Exception("Speaker not found");
             _db.Speakers.Remove(speaker);
             _db.SaveChanges();
+        }
+        
+        public IEnumerable<object> GetExternalEvents(string userId)
+        {
+            // this method to return list events from Google Calendar
+            // for demo purpose we expect this method to throw an exception 
+            throw new ExternalDependencyException(HttpStatusCode.FailedDependency, new ProblemDetails
+            {
+                Detail = "Could not find external events for user: FailedDependency " ,
+                Status = (int)HttpStatusCode.FailedDependency,
+                Type = "https://schema.org",
+            });
+
         }
 
 
