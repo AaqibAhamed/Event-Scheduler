@@ -59,5 +59,14 @@ namespace EventScheduler.Controllers
             _eventDataService.DeleteEvent(CurrentUserId,id);
             return Ok(id);
         }
+        
+        [HttpGet]
+        [Route("/external")]
+        public IActionResult GetExternalEvents()
+        {
+            var events = _eventDataService.GetExternalEvents(CurrentUserId);
+            return Ok(events);
+        }
+        
     }
 }
